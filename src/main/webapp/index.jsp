@@ -1,983 +1,439 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ShopKart - Online Shopping</title>
+
+<title>Happy Birthday Deepu 💖</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-    background:#f3f3f3;
-    color:#111;
-}
-
-/* HEADER */
-.header{
-    background:#131921;
-    color:white;
-    display:flex;
-    align-items:center;
-    gap:18px;
-    padding:10px 20px;
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-
-.logo{
-    font-size:27px;
-    font-weight:bold;
-    color:#ff9900;
-    cursor:pointer;
-    white-space:nowrap;
-}
-
-.location{
-    font-size:12px;
-    white-space:nowrap;
-}
-
-.location b{
-    display:block;
-    font-size:14px;
-}
-
-.search{
-    display:flex;
-    flex:1;
-    height:42px;
-}
-
-.search select{
-    width:65px;
-    border:0;
-    background:#eee;
-}
-
-.search input{
-    flex:1;
-    border:0;
-    padding:0 15px;
-    font-size:15px;
-    outline:none;
-}
-
-.search button{
-    width:55px;
-    border:0;
-    background:#ff9900;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.header-link{
-    font-size:12px;
-    white-space:nowrap;
-}
-
-.header-link b{
-    display:block;
-    font-size:15px;
-}
-
-.cart{
-    font-size:16px;
-    cursor:pointer;
-    position:relative;
-    white-space:nowrap;
-}
-
-.cart span{
-    position:absolute;
-    top:-12px;
-    left:15px;
-    background:#ff9900;
-    color:#111;
-    border-radius:50%;
-    padding:2px 7px;
-    font-weight:bold;
-}
-
-/* NAVIGATION */
-.nav{
-    background:#232f3e;
-    color:white;
-    padding:12px 20px;
-    display:flex;
-    gap:25px;
-    overflow:auto;
-}
-
-.nav a{
-    color:white;
-    text-decoration:none;
-    white-space:nowrap;
-    cursor:pointer;
-}
-
-/* HERO */
-.hero{
-    height:330px;
+    font-family:Arial, sans-serif;
     background:
-    linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.05)),
-    url("https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=1600&q=80");
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:center;
-    padding:40px;
-    color:white;
+      radial-gradient(circle at top,#ffd6e8,#e8d9ff 45%,#ccecff);
+    min-height:100vh;
+    overflow-x:hidden;
+    color:#333;
 }
 
-.hero-content{
-    max-width:500px;
-}
+/* Floating Hearts */
 
-.hero h1{
-    font-size:42px;
-    margin-bottom:15px;
-}
-
-.hero p{
-    font-size:18px;
-    margin-bottom:20px;
-}
-
-.hero button{
-    padding:13px 25px;
-    background:#ff9900;
-    border:0;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* CATEGORIES */
-.section{
-    padding:25px;
-}
-
-.section-title{
+.heart{
+    position:fixed;
+    bottom:-50px;
     font-size:25px;
+    animation:float 7s linear infinite;
+    z-index:1;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Main */
+
+.container{
+    width:100%;
+    max-width:480px;
+    margin:auto;
+    padding:25px 15px 50px;
+    position:relative;
+    z-index:2;
+}
+
+.card{
+    background:rgba(255,255,255,0.88);
+    border-radius:35px;
+    padding:25px 18px;
+    text-align:center;
+    box-shadow:0 15px 50px rgba(80,40,100,.25);
+    backdrop-filter:blur(10px);
+}
+
+/* Heading */
+
+.cake{
+    font-size:55px;
+    animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.small{
+    color:#9c27b0;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+h1{
+    font-size:35px;
+    margin:8px 0;
+    color:#e83e8c;
+}
+
+.name{
+    font-size:52px;
+    font-weight:900;
+    background:linear-gradient(90deg,#ff4081,#9c27b0,#ff4081);
+    -webkit-background-clip:text;
+    color:transparent;
     margin-bottom:18px;
 }
 
-.categories{
+/* Photo Gallery */
+
+.gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:15px;
-}
-
-.category{
-    background:white;
-    padding:20px;
-    text-align:center;
-    cursor:pointer;
-    transition:.2s;
-    border-radius:5px;
-}
-
-.category:hover{
-    transform:translateY(-5px);
-    box-shadow:0 5px 15px #bbb;
-}
-
-.category img{
-    width:100%;
-    height:120px;
-    object-fit:contain;
-}
-
-.category h3{
-    margin-top:10px;
-}
-
-/* PRODUCTS */
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
-}
-
-.product{
-    background:white;
-    padding:15px;
-    border-radius:5px;
-    position:relative;
-    transition:.2s;
-}
-
-.product:hover{
-    box-shadow:0 5px 20px #bbb;
-}
-
-.product img{
-    width:100%;
-    height:220px;
-    object-fit:contain;
-}
-
-.product h3{
-    font-size:17px;
-    margin:10px 0;
-    min-height:40px;
-}
-
-.rating{
-    color:#f5a623;
-    margin-bottom:7px;
-}
-
-.price{
-    font-size:23px;
-    font-weight:bold;
-}
-
-.mrp{
-    color:#777;
-    text-decoration:line-through;
-    margin-left:8px;
-    font-size:14px;
-}
-
-.discount{
-    color:#007600;
-    font-size:14px;
-    margin:6px 0;
-}
-
-.add{
-    width:100%;
-    padding:11px;
-    border:0;
-    border-radius:20px;
-    background:#ffd814;
-    cursor:pointer;
-    font-weight:bold;
-    margin-top:8px;
-}
-
-.buy{
-    width:100%;
-    padding:11px;
-    border:0;
-    border-radius:20px;
-    background:#ffa41c;
-    cursor:pointer;
-    font-weight:bold;
-    margin-top:8px;
-}
-
-.wishlist{
-    position:absolute;
-    right:15px;
-    top:15px;
-    font-size:22px;
-    cursor:pointer;
-}
-
-/* CART */
-.cart-panel{
-    position:fixed;
-    right:-420px;
-    top:0;
-    width:400px;
-    max-width:100%;
-    height:100%;
-    background:white;
-    z-index:2000;
-    box-shadow:-5px 0 20px #777;
-    padding:20px;
-    transition:.3s;
-    overflow:auto;
-}
-
-.cart-panel.active{
-    right:0;
-}
-
-.cart-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #ddd;
-    padding-bottom:15px;
-}
-
-.close{
-    font-size:28px;
-    cursor:pointer;
-}
-
-.cart-item{
-    display:flex;
-    gap:10px;
-    padding:15px 0;
-    border-bottom:1px solid #ddd;
-}
-
-.cart-item img{
-    width:80px;
-    height:80px;
-    object-fit:contain;
-}
-
-.cart-item-info{
-    flex:1;
-}
-
-.quantity{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    margin-top:8px;
-}
-
-.quantity button{
-    width:25px;
-    height:25px;
-    cursor:pointer;
-}
-
-.total{
-    font-size:22px;
-    font-weight:bold;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
     margin:20px 0;
 }
 
-.checkout{
+.gallery img{
     width:100%;
-    padding:14px;
-    border:0;
-    background:#ff9900;
+    height:210px;
+    object-fit:cover;
+    border-radius:22px;
+    border:5px solid white;
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+    transition:.4s;
+}
+
+.gallery img:hover{
+    transform:scale(1.04);
+}
+
+/* Message */
+
+.message{
+    padding:20px 10px;
+    line-height:1.8;
+    font-size:16px;
+    color:#4b4453;
+}
+
+.highlight{
+    color:#e91e63;
+    font-weight:bold;
+}
+
+.quote{
+    background:#fff0f7;
+    border-radius:20px;
+    padding:17px;
+    margin:15px 0;
+    color:#8e2460;
+    font-weight:bold;
+    line-height:1.7;
+}
+
+/* Button */
+
+button{
+    border:none;
+    outline:none;
+    padding:15px 28px;
+    border-radius:50px;
+    color:white;
     font-size:17px;
     font-weight:bold;
     cursor:pointer;
+    background:linear-gradient(90deg,#ff4081,#9c27b0);
+    box-shadow:0 8px 20px rgba(156,39,176,.3);
 }
 
-/* FOOTER */
-footer{
-    background:#131921;
-    color:white;
-    margin-top:30px;
-    padding:40px 25px;
+button:active{
+    transform:scale(.95);
 }
 
-.footer-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:30px;
+/* Surprise */
+
+#surprise{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:22px;
+    background:linear-gradient(135deg,#fff0f6,#f2e8ff);
+    color:#7b1fa2;
+    line-height:1.8;
+    font-weight:bold;
 }
 
-footer h3{
-    margin-bottom:15px;
+/* Footer */
+
+.footer{
+    margin-top:25px;
+    font-size:14px;
+    color:#777;
 }
 
-footer p{
-    color:#ddd;
-    margin:8px 0;
-}
-
-/* MOBILE */
-@media(max-width:700px){
-
-    .header{
-        flex-wrap:wrap;
-        gap:10px;
-    }
-
-    .logo{
-        font-size:22px;
-    }
-
-    .location,
-    .header-link{
-        display:none;
-    }
-
-    .search{
-        order:3;
-        flex-basis:100%;
-    }
-
-    .hero{
-        height:280px;
-        padding:25px;
-    }
-
-    .hero h1{
-        font-size:30px;
-    }
-
-    .section{
-        padding:15px;
-    }
-
-    .cart-panel{
-        width:100%;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
+<!-- Floating decorations -->
 
-    <div class="logo" onclick="location.reload()">
-        ShopKart
+<div class="heart" style="left:5%;animation-delay:0s;">💖</div>
+<div class="heart" style="left:18%;animation-delay:2s;">💕</div>
+<div class="heart" style="left:35%;animation-delay:4s;">✨</div>
+<div class="heart" style="left:55%;animation-delay:1s;">💜</div>
+<div class="heart" style="left:75%;animation-delay:3s;">🎈</div>
+<div class="heart" style="left:90%;animation-delay:5s;">💖</div>
+
+
+<div class="container">
+
+<div class="card">
+
+    <div class="cake">🎂</div>
+
+    <div class="small">
+        A SPECIAL DAY FOR A SPECIAL GIRL
     </div>
 
-    <div class="location">
-        Deliver to
-        <b>📍 India</b>
+    <h1>Happy Birthday</h1>
+
+    <div class="name">
+        Deepu 👑
     </div>
 
-    <div class="search">
-        <select>
-            <option>All</option>
-            <option>Electronics</option>
-            <option>Fashion</option>
-            <option>Home</option>
-        </select>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search products..."
-            onkeyup="searchProducts()"
-        >
+    <!-- FOUR PHOTOS -->
 
-        <button onclick="searchProducts()">🔍</button>
-    </div>
+    <div class="gallery">
 
-    <div class="header-link">
-        Hello, Sign in
-        <b>Account & Lists</b>
-    </div>
+        <img src="photo1.jpeg" alt="Deepu Photo 1">
 
-    <div class="header-link">
-        Returns
-        <b>& Orders</b>
-    </div>
+        <img src="photo2.jpeg" alt="Deepu Photo 2">
 
-    <div class="cart" onclick="openCart()">
-        🛒 Cart
-        <span id="cartCount">0</span>
-    </div>
+        <img src="photo3.jpeg" alt="Deepu Photo 3">
 
-</header>
-
-<!-- NAV -->
-<nav class="nav">
-    <a onclick="filterProducts('all')">☰ All</a>
-    <a onclick="filterProducts('electronics')">Electronics</a>
-    <a onclick="filterProducts('fashion')">Fashion</a>
-    <a onclick="filterProducts('home')">Home & Kitchen</a>
-    <a onclick="filterProducts('beauty')">Beauty</a>
-    <a onclick="filterProducts('sports')">Sports</a>
-    <a>Today's Deals</a>
-    <a>Customer Service</a>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Everything You Love. All in One Place.</h1>
-        <p>Discover amazing products at incredible prices.</p>
-        <button onclick="document.getElementById('products').scrollIntoView()">
-            Shop Now →
-        </button>
-    </div>
-</section>
-
-<!-- CATEGORIES -->
-<section class="section">
-
-    <h2 class="section-title">Shop by Category</h2>
-
-    <div class="categories">
-
-        <div class="category" onclick="filterProducts('electronics')">
-            <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=500&q=80">
-            <h3>Electronics</h3>
-        </div>
-
-        <div class="category" onclick="filterProducts('fashion')">
-            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=500&q=80">
-            <h3>Fashion</h3>
-        </div>
-
-        <div class="category" onclick="filterProducts('home')">
-            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=500&q=80">
-            <h3>Home & Kitchen</h3>
-        </div>
-
-        <div class="category" onclick="filterProducts('beauty')">
-            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=500&q=80">
-            <h3>Beauty</h3>
-        </div>
-
-        <div class="category" onclick="filterProducts('sports')">
-            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=500&q=80">
-            <h3>Sports</h3>
-        </div>
+        <img src="photo4.jpeg" alt="Deepu Photo 4">
 
     </div>
 
-</section>
 
-<!-- PRODUCTS -->
-<section class="section" id="products">
+    <!-- Birthday Message -->
 
-    <h2 class="section-title">Featured Products</h2>
+    <div class="message">
 
-    <div class="products" id="productContainer"></div>
+        <p>
+        <span class="highlight">
+        Dear Deepu 💖
+        </span>
+        </p>
 
-</section>
+        <br>
 
-<!-- CART -->
-<div class="cart-panel" id="cartPanel">
+        Life lo chala mandi friends
+        parichayam avutharu...
 
-    <div class="cart-header">
-        <h2>Shopping Cart</h2>
-        <span class="close" onclick="closeCart()">×</span>
+        Kani kontha mandi matrame
+        mana heart lo special place
+        create cheskuntaru. 🫶
+
+        <br><br>
+
+        <span class="highlight">
+        Nuvvu alanti oka very special friend. ❤️
+        </span>
+
+        <br><br>
+
+        Mana friendship lo unna
+        small small jokes,
+        silly fights,
+        fun moments,
+        unforgettable memories...
+
+        ivanni life lo eppatiki
+        beautiful memories ga untayi. 🥰
+
     </div>
 
-    <div id="cartItems"></div>
 
-    <div class="total">
-        Total: ₹<span id="cartTotal">0</span>
+    <div class="quote">
+
+        “Good friends are not just people
+        we meet in life...
+
+        They are the beautiful memories
+        we carry forever.” 💕✨
+
     </div>
 
-    <button class="checkout" onclick="checkout()">
-        Proceed to Checkout
+
+    <div class="message">
+
+        Nee life lo happiness
+        eppudu thakkuva kakudadhu. 🌸
+
+        <br><br>
+
+        Nee face lo smile eppudu
+        ilaane undali. 😊
+
+        <br><br>
+
+        Nee dreams anni nijam avvali,
+        nee life full of success,
+        happiness and beautiful moments
+        tho nindipovali. ✨
+
+        <br><br>
+
+        <span class="highlight">
+        Happy Birthday once again Deepu! 🎂🎉
+        </span>
+
+        <br><br>
+
+        Always stay happy,
+        always keep smiling,
+        and always be the wonderful person
+        you are. 💖
+
+        <br><br>
+
+        <b>
+        Our friendship forever! 🫂❤️
+        </b>
+
+    </div>
+
+
+    <!-- Surprise Button -->
+
+    <button onclick="showSurprise()">
+        🎁 Open Your Surprise
     </button>
+
+
+    <div id="surprise">
+
+        🎉 SURPRISE DEEPU! 🎉
+
+        <br><br>
+
+        You are not just a friend...
+
+        <br>
+
+        You are one of the beautiful
+        memories of my life. 💖
+
+        <br><br>
+
+        No matter where life takes us,
+        I hope our friendship always
+        stays this beautiful. 🫂✨
+
+        <br><br>
+
+        <span style="font-size:25px;">
+        💕 Best Friends Forever 💕
+        </span>
+
+    </div>
+
+
+    <div class="footer">
+
+        Made with ❤️ specially for Deepu
+
+    </div>
 
 </div>
 
-<!-- FOOTER -->
-<footer>
+</div>
 
-    <div class="footer-grid">
-
-        <div>
-            <h3>Get to Know Us</h3>
-            <p>About ShopKart</p>
-            <p>Careers</p>
-            <p>Our Technology</p>
-        </div>
-
-        <div>
-            <h3>Make Money With Us</h3>
-            <p>Sell on ShopKart</p>
-            <p>Become an Affiliate</p>
-            <p>Advertise Products</p>
-        </div>
-
-        <div>
-            <h3>Customer Support</h3>
-            <p>Your Account</p>
-            <p>Returns & Refunds</p>
-            <p>Help Center</p>
-        </div>
-
-        <div>
-            <h3>Connect With Us</h3>
-            <p>Facebook</p>
-            <p>Instagram</p>
-            <p>YouTube</p>
-        </div>
-
-    </div>
-
-    <br>
-    <hr>
-    <br>
-
-    <center>
-        © 2026 ShopKart. All Rights Reserved.
-    </center>
-
-</footer>
 
 <script>
 
-const products = [
+function showSurprise(){
 
-{
-id:1,
-name:"Wireless Bluetooth Headphones",
-category:"electronics",
-price:1499,
-mrp:2999,
-rating:4.5,
-image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
-},
+    document.getElementById("surprise").style.display="block";
 
-{
-id:2,
-name:"Smart Watch Series 9",
-category:"electronics",
-price:2499,
-mrp:4999,
-rating:4.4,
-image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
-},
+    document.querySelector("button").innerHTML =
+        "💖 Best Friends Forever 💖";
 
-{
-id:3,
-name:"Premium Running Shoes",
-category:"fashion",
-price:1799,
-mrp:3499,
-rating:4.6,
-image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
-},
 
-{
-id:4,
-name:"Classic Men's Watch",
-category:"fashion",
-price:1999,
-mrp:3999,
-rating:4.3,
-image:"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80"
-},
+    /* Confetti */
 
-{
-id:5,
-name:"Modern Coffee Maker",
-category:"home",
-price:2299,
-mrp:4299,
-rating:4.5,
-image:"https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=600&q=80"
-},
+    for(let i=0;i<40;i++){
 
-{
-id:6,
-name:"Ceramic Dinner Set",
-category:"home",
-price:1299,
-mrp:2499,
-rating:4.2,
-image:"https://images.unsplash.com/photo-1603199506016-b9a594b593c0?auto=format&fit=crop&w=600&q=80"
-},
+        let confetti=document.createElement("div");
 
-{
-id:7,
-name:"Vitamin C Face Serum",
-category:"beauty",
-price:699,
-mrp:999,
-rating:4.6,
-image:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80"
-},
+        confetti.innerHTML=
+        ["🎉","💖","✨","💕","🎈"][Math.floor(Math.random()*5)];
 
-{
-id:8,
-name:"Professional Makeup Kit",
-category:"beauty",
-price:1199,
-mrp:1999,
-rating:4.4,
-image:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80"
-},
+        confetti.style.position="fixed";
+        confetti.style.left=
+        Math.random()*100+"vw";
 
-{
-id:9,
-name:"Football Training Ball",
-category:"sports",
-price:599,
-mrp:999,
-rating:4.5,
-image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80"
-},
+        confetti.style.top="-30px";
 
-{
-id:10,
-name:"Fitness Dumbbell Set",
-category:"sports",
-price:1599,
-mrp:2499,
-rating:4.7,
-image:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80"
-}
+        confetti.style.fontSize=
+        (20+Math.random()*20)+"px";
 
-];
+        confetti.style.zIndex="999";
 
-let cart = JSON.parse(localStorage.getItem("shopkartCart")) || [];
+        document.body.appendChild(confetti);
 
-function displayProducts(list = products){
+        let duration=
+        2000+Math.random()*2000;
 
-    const container = document.getElementById("productContainer");
-
-    container.innerHTML = "";
-
-    list.forEach(product => {
-
-        const discount =
-        Math.round(((product.mrp-product.price)/product.mrp)*100);
-
-        container.innerHTML += `
-
-        <div class="product">
-
-            <div class="wishlist" onclick="wishlist(this)">
-                ♡
-            </div>
-
-            <img src="${product.image}">
-
-            <h3>${product.name}</h3>
-
-            <div class="rating">
-                ⭐ ${product.rating}
-            </div>
-
-            <div>
-                <span class="price">
-                    ₹${product.price}
-                </span>
-
-                <span class="mrp">
-                    ₹${product.mrp}
-                </span>
-            </div>
-
-            <div class="discount">
-                ${discount}% off
-            </div>
-
-            <button class="add"
-                onclick="addToCart(${product.id})">
-                Add to Cart
-            </button>
-
-            <button class="buy"
-                onclick="buyNow(${product.id})">
-                Buy Now
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-function addToCart(id){
-
-    const product = products.find(p => p.id === id);
-
-    const existing = cart.find(p => p.id === id);
-
-    if(existing){
-        existing.quantity++;
-    }else{
-        cart.push({
-            ...product,
-            quantity:1
-        });
-    }
-
-    saveCart();
-
-    alert(product.name + " added to cart!");
-
-}
-
-function buyNow(id){
-
-    addToCart(id);
-
-    openCart();
-
-}
-
-function removeFromCart(id){
-
-    cart = cart.filter(p => p.id !== id);
-
-    saveCart();
-
-}
-
-function changeQuantity(id, amount){
-
-    const item = cart.find(p => p.id === id);
-
-    if(!item) return;
-
-    item.quantity += amount;
-
-    if(item.quantity <= 0){
-        removeFromCart(id);
-    }
-
-    saveCart();
-
-}
-
-function saveCart(){
-
-    localStorage.setItem(
-        "shopkartCart",
-        JSON.stringify(cart)
-    );
-
-    updateCart();
-
-}
-
-function updateCart(){
-
-    document.getElementById("cartCount").innerText =
-    cart.reduce((sum,item)=>sum+item.quantity,0);
-
-    const container =
-    document.getElementById("cartItems");
-
-    container.innerHTML = "";
-
-    let total = 0;
-
-    cart.forEach(item => {
-
-        total += item.price * item.quantity;
-
-        container.innerHTML += `
-
-        <div class="cart-item">
-
-            <img src="${item.image}">
-
-            <div class="cart-item-info">
-
-                <b>${item.name}</b>
-
-                <p>₹${item.price}</p>
-
-                <div class="quantity">
-
-                    <button onclick="changeQuantity(${item.id},-1)">
-                        -
-                    </button>
-
-                    ${item.quantity}
-
-                    <button onclick="changeQuantity(${item.id},1)">
-                        +
-                    </button>
-
-                    <button onclick="removeFromCart(${item.id})">
-                        🗑
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
-
-    document.getElementById("cartTotal").innerText =
-    total.toLocaleString("en-IN");
-
-}
-
-function openCart(){
-
-    document.getElementById("cartPanel")
-    .classList.add("active");
-
-    updateCart();
-
-}
-
-function closeCart(){
-
-    document.getElementById("cartPanel")
-    .classList.remove("active");
-
-}
-
-function searchProducts(){
-
-    const value =
-    document.getElementById("searchInput")
-    .value
-    .toLowerCase();
-
-    const result = products.filter(product =>
-        product.name.toLowerCase().includes(value)
-    );
-
-    displayProducts(result);
-
-}
-
-function filterProducts(category){
-
-    if(category === "all"){
-        displayProducts(products);
-    }else{
-        displayProducts(
-            products.filter(p => p.category === category)
+        confetti.animate(
+            [
+                {
+                    transform:"translateY(0) rotate(0deg)",
+                    opacity:1
+                },
+                {
+                    transform:
+                    "translateY(110vh) rotate(720deg)",
+                    opacity:0
+                }
+            ],
+            {
+                duration:duration,
+                easing:"linear"
+            }
         );
-    }
 
-    document.getElementById("products")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-function wishlist(element){
-
-    if(element.innerText === "♡"){
-        element.innerText = "♥";
-        alert("Added to wishlist ❤️");
-    }else{
-        element.innerText = "♡";
+        setTimeout(()=>{
+            confetti.remove();
+        },duration);
     }
 
 }
-
-function checkout(){
-
-    if(cart.length === 0){
-        alert("Your cart is empty!");
-        return;
-    }
-
-    alert(
-        "Checkout page opened!\n\n" +
-        "This demo is ready for connecting to a real payment gateway."
-    );
-
-}
-
-/* INITIAL LOAD */
-displayProducts();
-updateCart();
 
 </script>
 
 </body>
 </html>
-```
