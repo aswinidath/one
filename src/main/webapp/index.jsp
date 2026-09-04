@@ -327,7 +327,7 @@
             <h2>Popular Products</h2>
         </div>
 
-        <select id="sortProducts" onchange="sortProducts()">
+        <slect id="sortProducts" onchange="sortProducts()">
 
             <option value="default">
                 Sort: Featured
