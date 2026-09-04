@@ -4,28 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bharathi Sypireddy | Sugarcane Shop</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Bharathi Sypireddy Sugarcane Shop</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= NAVBAR ================= -->
 
-<header class="header">
+<header class="navbar">
 
-    <div class="logo-area">
-        <div class="logo-icon">🌿</div>
+    <div class="logo">
+        <div class="logo-symbol">🌿</div>
 
         <div>
             <h1>Bharathi</h1>
-            <span>Sypireddy Sugarcane Shop</span>
+            <p>Sypireddy Sugarcane Shop</p>
         </div>
     </div>
 
@@ -36,8 +31,8 @@
         <a href="#contact">Contact</a>
     </nav>
 
-    <button class="cart-button" onclick="openCart()">
-        🛒
+    <button class="cart-btn" onclick="openCart()">
+        🛒 Cart
         <span id="cartCount">0</span>
     </button>
 
@@ -48,45 +43,52 @@
 
 <section class="hero" id="home">
 
-    <div class="hero-content">
+    <div class="hero-text">
 
-        <span class="small-title">FRESH • NATURAL • REFRESHING</span>
+        <span class="tag">FRESH • NATURAL • REFRESHING</span>
 
         <h2>
             Fresh Sugarcane Juice
-            <br>
-            <span>Made Fresh For You</span>
+            <span>Made With Love</span>
         </h2>
 
         <p>
-            Enjoy freshly prepared sugarcane juice along with
-            your favourite chocolates, biscuits and refreshing drinks.
+            Fresh sugarcane juice, chocolates, biscuits and
+            refreshing drinks — all available at Bharathi
+            Sypireddy Sugarcane Shop.
         </p>
 
         <div class="hero-buttons">
-            <a href="#products" class="primary-btn">
+
+            <a href="#products" class="shop-btn">
                 Shop Now →
             </a>
 
-            <a href="#about" class="secondary-btn">
-                Learn More
+            <a href="#about" class="learn-btn">
+                About Us
             </a>
+
         </div>
 
     </div>
 
-    <div class="hero-image">
-        <div class="juice-card">
 
-            <div class="juice-icon">🥤</div>
+    <div class="hero-visual">
+
+        <div class="circle">
+
+            <div class="juice-glass">
+                🥤
+            </div>
 
             <h3>Fresh Sugarcane Juice</h3>
 
-            <p>100% Fresh • Served Chilled</p>
+            <p>Starting from</p>
 
-            <strong>From ₹10</strong>
+            <strong>₹10</strong>
 
         </div>
+
     </div>
 
 </section>
@@ -96,94 +98,87 @@
 
 <section class="categories">
 
-    <div class="category active" onclick="filterProducts('all')">
+    <button onclick="filterProducts('all')" class="category active">
         <span>🛍️</span>
-        <p>All Products</p>
-    </div>
+        All
+    </button>
 
-    <div class="category" onclick="filterProducts('juice')">
+    <button onclick="filterProducts('juice')" class="category">
         <span>🥤</span>
-        <p>Sugarcane Juice</p>
-    </div>
+        Sugarcane
+    </button>
 
-    <div class="category" onclick="filterProducts('chocolate')">
+    <button onclick="filterProducts('chocolate')" class="category">
         <span>🍫</span>
-        <p>Chocolates</p>
-    </div>
+        Chocolates
+    </button>
 
-    <div class="category" onclick="filterProducts('biscuit')">
+    <button onclick="filterProducts('biscuit')" class="category">
         <span>🍪</span>
-        <p>Biscuits</p>
-    </div>
+        Biscuits
+    </button>
 
-    <div class="category" onclick="filterProducts('drink')">
+    <button onclick="filterProducts('drink')" class="category">
         <span>🧃</span>
-        <p>Drinks</p>
-    </div>
+        Drinks
+    </button>
 
 </section>
 
 
 <!-- ================= PRODUCTS ================= -->
 
-<section class="products-section" id="products">
+<section class="products" id="products">
 
-    <div class="section-heading">
+    <div class="section-top">
 
         <div>
-            <span class="section-label">OUR PRODUCTS</span>
+            <span class="section-tag">OUR PRODUCTS</span>
 
             <h2>Shop Your Favourites</h2>
 
             <p>
-                Fresh drinks and tasty snacks at affordable prices.
+                Fresh products at affordable prices.
             </p>
         </div>
 
-        <div class="search-box">
+        <div class="search">
+
             🔍
+
             <input
                 type="text"
-                id="searchInput"
+                id="search"
                 placeholder="Search products..."
-                onkeyup="searchProducts()"
+                oninput="searchProducts()"
             >
+
         </div>
 
     </div>
 
 
-    <div class="product-grid" id="productGrid">
-
-        <!-- Products loaded by JavaScript -->
-
-    </div>
+    <div id="productContainer" class="product-container"></div>
 
 </section>
 
 
-<!-- ================= SPECIAL OFFER ================= -->
+<!-- ================= OFFER ================= -->
 
 <section class="offer">
 
     <div>
-
         <span>SPECIAL OFFER</span>
 
-        <h2>
-            Refresh Yourself
-            <br>
-            With Fresh Sugarcane Juice
-        </h2>
+        <h2>Refresh Your Day With Fresh Sugarcane Juice</h2>
 
         <p>
-            Freshly prepared whenever you order.
+            Freshly prepared and served with care.
         </p>
-
     </div>
 
     <div class="offer-price">
-        <small>Starting at</small>
+        <small>Starting from</small>
         <strong>₹10</strong>
     </div>
 
@@ -194,42 +189,42 @@
 
 <section class="about" id="about">
 
-    <div class="about-image">
+    <div class="about-picture">
         🌱
     </div>
 
-    <div class="about-content">
+    <div class="about-text">
 
-        <span class="section-label">ABOUT OUR SHOP</span>
+        <span class="section-tag">ABOUT US</span>
 
         <h2>Freshness You Can Taste</h2>
 
         <p>
-            Bharathi Sypireddy Sugarcane Shop brings you refreshing
-            sugarcane juice and a variety of chocolates, biscuits
-            and drinks.
+            Welcome to Bharathi Sypireddy Sugarcane Shop.
+            We provide freshly prepared sugarcane juice along
+            with chocolates, biscuits and refreshing drinks.
         </p>
 
-        <div class="features">
+        <div class="advantages">
 
             <div>
-                <span>✓</span>
-                <p>Freshly Prepared</p>
+                <b>✓</b>
+                <span>Fresh Products</span>
             </div>
 
             <div>
-                <span>✓</span>
-                <p>Affordable Prices</p>
+                <b>✓</b>
+                <span>Affordable Prices</span>
             </div>
 
             <div>
-                <span>✓</span>
-                <p>Quality Products</p>
+                <b>✓</b>
+                <span>Quality Products</span>
             </div>
 
             <div>
-                <span>✓</span>
-                <p>Quick Service</p>
+                <b>✓</b>
+                <span>Fast Service</span>
             </div>
 
         </div>
@@ -239,139 +234,177 @@
 </section>
 
 
+<!-- ================= CONTACT ================= -->
+
+<section class="contact" id="contact">
+
+    <div>
+        <span class="section-tag">CONTACT US</span>
+
+        <h2>Visit Bharathi Sypireddy Shop</h2>
+
+        <p>
+            Have a question or want to place an order?
+            Contact us today.
+        </p>
+    </div>
+
+    <div class="contact-info">
+
+        <p>📞 <strong>Phone:</strong> +91 XXXXX XXXXX</p>
+
+        <p>📍 <strong>Location:</strong> Your Shop Location</p>
+
+        <p>🕐 <strong>Opening:</strong> 9:00 AM – 9:00 PM</p>
+
+    </div>
+
+</section>
+
+
 <!-- ================= FOOTER ================= -->
 
-<footer id="contact">
+<footer>
 
-    <div class="footer-main">
+    <div class="footer-content">
 
         <div>
-
-            <div class="footer-logo">
-                🌿 Bharathi Sypireddy
-            </div>
+            <h2>🌿 Bharathi Sypireddy</h2>
 
             <p>
-                Fresh sugarcane juice, drinks and snacks
+                Fresh sugarcane juice and tasty snacks
                 for everyone.
             </p>
-
         </div>
 
-
         <div>
-
             <h3>Quick Links</h3>
 
             <a href="#home">Home</a>
             <a href="#products">Products</a>
             <a href="#about">About</a>
-
         </div>
 
-
         <div>
+            <h3>Products</h3>
 
-            <h3>Contact</h3>
-
-            <p>📞 +91 XXXXX XXXXX</p>
-            <p>📍 Your Shop Location</p>
-
+            <a href="#products">Sugarcane Juice</a>
+            <a href="#products">Chocolates</a>
+            <a href="#products">Biscuits</a>
+            <a href="#products">Drinks</a>
         </div>
 
     </div>
 
-
     <div class="copyright">
-
-        © 2026 Bharathi Sypireddy Sugarcane Shop.
-        All Rights Reserved.
-
+        © 2026 Bharathi Sypireddy Sugarcane Shop. All Rights Reserved.
     </div>
 
 </footer>
 
 
-<!-- ================= CART ================= -->
+<!-- ================= CART SIDEBAR ================= -->
 
-<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
 
-<aside class="cart" id="cart">
+<div id="cartSidebar" class="cart-sidebar">
 
     <div class="cart-header">
 
-        <h2>Your Cart</h2>
+        <h2>Shopping Cart</h2>
 
         <button onclick="closeCart()">✕</button>
 
     </div>
 
+
     <div id="cartItems" class="cart-items">
 
-        <div class="empty-cart">
+        <div class="empty">
             🛒
             <h3>Your cart is empty</h3>
-            <p>Add something delicious!</p>
+            <p>Add products to your cart.</p>
         </div>
 
     </div>
 
 
-    <div class="cart-footer">
+    <div class="cart-bottom">
 
-        <div class="total-row">
+        <div class="total">
+
             <span>Total</span>
-            <strong id="cartTotal">₹0</strong>
+
+            <strong id="cartTotal">
+                ₹0
+            </strong>
+
         </div>
 
-        <button class="checkout-btn" onclick="checkout()">
-            Proceed to Checkout →
+        <button onclick="checkout()" class="checkout">
+            Checkout →
         </button>
 
     </div>
 
-</aside>
+</div>
 
 
-<!-- ================= CHECKOUT MODAL ================= -->
+<!-- ================= CHECKOUT ================= -->
 
-<div class="modal-overlay" id="checkoutModal">
+<div id="checkoutModal" class="modal">
 
-    <div class="checkout-modal">
+    <div class="checkout-box">
 
-        <button class="modal-close" onclick="closeCheckout()">✕</button>
+        <button
+            class="close-modal"
+            onclick="closeCheckout()">
+            ✕
+        </button>
 
-        <h2>Checkout</h2>
+        <h2>Complete Your Order</h2>
 
-        <p>Enter your details to place your order.</p>
+        <p>Enter your details below.</p>
 
         <input
+            id="name"
             type="text"
-            id="customerName"
-            placeholder="Your Name"
+            placeholder="Full Name"
         >
 
         <input
+            id="phone"
             type="tel"
-            id="customerPhone"
             placeholder="Mobile Number"
         >
 
         <textarea
-            id="customerAddress"
+            id="address"
             placeholder="Delivery Address"
         ></textarea>
 
-        <select id="paymentMethod">
+        <select id="payment">
 
-            <option value="">Select Payment Method</option>
-            <option>Cash on Delivery</option>
-            <option>UPI</option>
+            <option value="">
+                Select Payment Method
+            </option>
+
+            <option value="Cash on Delivery">
+                Cash on Delivery
+            </option>
+
+            <option value="UPI">
+                UPI
+            </option>
 
         </select>
 
-        <button class="place-order" onclick="placeOrder()">
+        <button
+            class="place-order"
+            onclick="placeOrder()">
+
             Place Order
+
         </button>
 
     </div>
