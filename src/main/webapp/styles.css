@@ -1,145 +1,679 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* =========================================
+   BHARATHI SYPIREDDY SHOP
+   E-COMMERCE JAVASCRIPT
+========================================= */
+
+
+const products = [
+
+    /* ===== SUGARCANE JUICE ===== */
+
+    {
+        id: 1,
+        name: "Sugarcane Juice - 150ml",
+        category: "juice",
+        price: 10,
+        icon: "🥤",
+        description: "Freshly prepared sugarcane juice"
+    },
+
+    {
+        id: 2,
+        name: "Sugarcane Juice - 250ml",
+        category: "juice",
+        price: 20,
+        icon: "🥤",
+        description: "Refreshing 250ml sugarcane glass"
+    },
+
+    {
+        id: 3,
+        name: "Sugarcane Juice - 500ml",
+        category: "juice",
+        price: 40,
+        icon: "🍹",
+        description: "Large chilled sugarcane bottle"
+    },
+
+    {
+        id: 4,
+        name: "Sugarcane Juice - 1 Litre",
+        category: "juice",
+        price: 70,
+        icon: "🧃",
+        description: "1 litre fresh sugarcane bottle"
+    },
+
+
+    /* ===== CHOCOLATES ===== */
+
+    {
+        id: 5,
+        name: "Dairy Milk Chocolate",
+        category: "chocolate",
+        price: 40,
+        icon: "🍫",
+        description: "Smooth and delicious chocolate"
+    },
+
+    {
+        id: 6,
+        name: "KitKat",
+        category: "chocolate",
+        price: 30,
+        icon: "🍫",
+        description: "Crispy chocolate wafer"
+    },
+
+    {
+        id: 7,
+        name: "5 Star",
+        category: "chocolate",
+        price: 20,
+        icon: "🍫",
+        description: "Rich caramel chocolate"
+    },
+
+    {
+        id: 8,
+        name: "Perk",
+        category: "chocolate",
+        price: 10,
+        icon: "🍫",
+        description: "Crispy chocolate snack"
+    },
+
+
+    /* ===== BISCUITS ===== */
+
+    {
+        id: 9,
+        name: "Parle-G Biscuits",
+        category: "biscuit",
+        price: 10,
+        icon: "🍪",
+        description: "Classic tea-time biscuits"
+    },
+
+    {
+        id: 10,
+        name: "Good Day Biscuits",
+        category: "biscuit",
+        price: 20,
+        icon: "🍪",
+        description: "Crunchy and tasty biscuits"
+    },
+
+    {
+        id: 11,
+        name: "Hide & Seek",
+        category: "biscuit",
+        price: 30,
+        icon: "🍪",
+        description: "Chocolate chip biscuits"
+    },
+
+
+    /* ===== DRINKS ===== */
+
+    {
+        id: 12,
+        name: "Sprite",
+        category: "drink",
+        price: 40,
+        icon: "🧃",
+        description: "Refreshing soft drink"
+    },
+
+    {
+        id: 13,
+        name: "Coca-Cola",
+        category: "drink",
+        price: 40,
+        icon: "🥤",
+        description: "Classic refreshing drink"
+    },
+
+    {
+        id: 14,
+        name: "Frooti",
+        category: "drink",
+        price: 20,
+        icon: "🧃",
+        description: "Refreshing mango drink"
+    }
+
+];
+
+
+let cart = JSON.parse(localStorage.getItem("bharathiCart")) || [];
+
+
+/* =========================================
+   DISPLAY PRODUCTS
+========================================= */
+
+function displayProducts(list = products) {
+
+    const grid = document.getElementById("productGrid");
+
+    grid.innerHTML = "";
+
+
+    if (list.length === 0) {
+
+        grid.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px;
+            ">
+                <h2>No products found 😕</h2>
+                <p>Try another search.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.forEach(product => {
+
+        grid.innerHTML += `
+
+            <div class="product-card">
+
+                <div class="product-image">
+                    ${product.icon}
+                </div>
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        ${product.category}
+                    </span>
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <p>
+                        ${product.description}
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">
+                            ₹${product.price}
+                        </span>
+
+                        <button
+                            class="add-btn"
+                            onclick="addToCart(${product.id})"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
 }
 
-h1, h2, h3 {
-  color: #333;
+
+/* =========================================
+   ADD TO CART
+========================================= */
+
+function addToCart(id) {
+
+    const product = products.find(
+        item => item.id === id
+    );
+
+    const existing = cart.find(
+        item => item.id === id
+    );
+
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+
+            ...product,
+
+            quantity: 1
+
+        });
+
+    }
+
+
+    saveCart();
+
+    updateCart();
+
+    openCart();
+
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+
+/* =========================================
+   SAVE CART
+========================================= */
+
+function saveCart() {
+
+    localStorage.setItem(
+        "bharathiCart",
+        JSON.stringify(cart)
+    );
+
 }
 
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ff6f61;
-  color: white;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+
+/* =========================================
+   UPDATE CART
+========================================= */
+
+function updateCart() {
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    let total = 0;
+
+    let count = 0;
+
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+
+            <div class="empty-cart">
+
+                🛒
+
+                <h3>Your cart is empty</h3>
+
+                <p>
+                    Add something delicious!
+                </p>
+
+            </div>
+
+        `;
+
+    } else {
+
+        cartItems.innerHTML = "";
+
+
+        cart.forEach(item => {
+
+            total += item.price * item.quantity;
+
+            count += item.quantity;
+
+
+            cartItems.innerHTML += `
+
+                <div class="cart-item">
+
+                    <div class="cart-item-icon">
+                        ${item.icon}
+                    </div>
+
+                    <div class="cart-item-info">
+
+                        <h4>
+                            ${item.name}
+                        </h4>
+
+                        <p>
+                            ₹${item.price * item.quantity}
+                        </p>
+
+                        <div class="quantity">
+
+                            <button
+                                onclick="changeQuantity(
+                                    ${item.id},
+                                    -1
+                                )"
+                            >
+                                −
+                            </button>
+
+                            <strong>
+                                ${item.quantity}
+                            </strong>
+
+                            <button
+                                onclick="changeQuantity(
+                                    ${item.id},
+                                    1
+                                )"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="remove"
+                        onclick="removeFromCart(${item.id})"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    cartCount.textContent = count;
+
+    cartTotal.textContent =
+        `₹${total}`;
+
 }
 
-.btn:hover {
-  background-color: #ff4a3d;
+
+/* =========================================
+   CHANGE QUANTITY
+========================================= */
+
+function changeQuantity(id, amount) {
+
+    const item = cart.find(
+        product => product.id === id
+    );
+
+
+    if (!item) return;
+
+
+    item.quantity += amount;
+
+
+    if (item.quantity <= 0) {
+
+        cart = cart.filter(
+            product => product.id !== id
+        );
+
+    }
+
+
+    saveCart();
+
+    updateCart();
+
 }
 
-/* Hero Section */
-.hero {
-  background-image: url('https://via.placeholder.com/1920x1080');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
+
+/* =========================================
+   REMOVE PRODUCT
+========================================= */
+
+function removeFromCart(id) {
+
+    cart = cart.filter(
+        product => product.id !== id
+    );
+
+    saveCart();
+
+    updateCart();
+
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+
+/* =========================================
+   OPEN CART
+========================================= */
+
+function openCart() {
+
+    document
+        .getElementById("cart")
+        .classList.add("open");
+
+    document
+        .getElementById("cartOverlay")
+        .classList.add("show");
+
 }
 
-.hero-content p {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+
+/* =========================================
+   CLOSE CART
+========================================= */
+
+function closeCart() {
+
+    document
+        .getElementById("cart")
+        .classList.remove("open");
+
+    document
+        .getElementById("cartOverlay")
+        .classList.remove("show");
+
 }
 
-/* Services Section */
-.services {
-  padding: 50px 20px;
-  text-align: center;
+
+/* =========================================
+   SEARCH
+========================================= */
+
+function searchProducts() {
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+
+    const filtered = products.filter(product =>
+
+        product.name
+            .toLowerCase()
+            .includes(search)
+
+        ||
+
+        product.category
+            .toLowerCase()
+            .includes(search)
+
+    );
+
+
+    displayProducts(filtered);
+
 }
 
-.service-cards {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+
+/* =========================================
+   CATEGORY FILTER
+========================================= */
+
+function filterProducts(category) {
+
+    document
+        .querySelectorAll(".category")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+
+    event.currentTarget.classList.add("active");
+
+
+    if (category === "all") {
+
+        displayProducts(products);
+
+        return;
+
+    }
+
+
+    const filtered =
+        products.filter(
+            product =>
+                product.category === category
+        );
+
+
+    displayProducts(filtered);
+
 }
 
-.card {
-  width: 30%;
-  margin: 20px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
+
+/* =========================================
+   CHECKOUT
+========================================= */
+
+function checkout() {
+
+    if (cart.length === 0) {
+
+        alert(
+            "Your cart is empty. Please add a product first."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("checkoutModal")
+        .classList.add("show");
+
 }
 
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+
+/* =========================================
+   CLOSE CHECKOUT
+========================================= */
+
+function closeCheckout() {
+
+    document
+        .getElementById("checkoutModal")
+        .classList.remove("show");
+
 }
 
-.card h3 {
-  margin: 15px 0;
+
+/* =========================================
+   PLACE ORDER
+========================================= */
+
+function placeOrder() {
+
+    const name =
+        document.getElementById("customerName").value;
+
+    const phone =
+        document.getElementById("customerPhone").value;
+
+    const address =
+        document.getElementById("customerAddress").value;
+
+    const payment =
+        document.getElementById("paymentMethod").value;
+
+
+    if (!name || !phone || !address || !payment) {
+
+        alert(
+            "Please fill all the details."
+        );
+
+        return;
+
+    }
+
+
+    const orderNumber =
+        "BS" +
+        Math.floor(
+            100000 + Math.random() * 900000
+        );
+
+
+    alert(
+
+        "🎉 Order Placed Successfully!\n\n" +
+
+        "Order ID: " +
+        orderNumber +
+        "\n\n" +
+
+        "Thank you, " +
+        name +
+        "!"
+
+    );
+
+
+    cart = [];
+
+    saveCart();
+
+    updateCart();
+
+    closeCheckout();
+
+    closeCart();
+
+
+    document.getElementById("customerName").value = "";
+
+    document.getElementById("customerPhone").value = "";
+
+    document.getElementById("customerAddress").value = "";
+
+    document.getElementById("paymentMethod").value = "";
+
 }
 
-.card p {
-  padding: 0 15px 15px;
-}
 
-/* Gallery Section */
-.gallery {
-  padding: 50px 20px;
-  text-align: center;
-}
+/* =========================================
+   INITIAL LOAD
+========================================= */
 
-.gallery-images {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
+displayProducts();
 
-.gallery-images img {
-  width: 45%;
-  margin: 10px 0;
-  border-radius: 10px;
-}
-
-/* Contact Section */
-.contact {
-  padding: 50px 20px;
-  text-align: center;
-}
-
-#contact-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#contact-form input, #contact-form textarea {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-#contact-form button {
-  padding: 10px 20px;
-  background-color: #ff6f61;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#contact-form button:hover {
-  background-color: #ff4a3d;
-}
-
-/* Footer */
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
+updateCart();
