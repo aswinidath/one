@@ -1,439 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Happy Birthday Deepu 💖</title>
+    <title>Bharathi Sypireddy | Sugarcane Shop</title>
 
-<style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-body{
-    font-family:Arial, sans-serif;
-    background:
-      radial-gradient(circle at top,#ffd6e8,#e8d9ff 45%,#ccecff);
-    min-height:100vh;
-    overflow-x:hidden;
-    color:#333;
-}
-
-/* Floating Hearts */
-
-.heart{
-    position:fixed;
-    bottom:-50px;
-    font-size:25px;
-    animation:float 7s linear infinite;
-    z-index:1;
-}
-
-@keyframes float{
-    0%{
-        transform:translateY(0) rotate(0);
-        opacity:0;
-    }
-
-    20%{
-        opacity:1;
-    }
-
-    100%{
-        transform:translateY(-110vh) rotate(360deg);
-        opacity:0;
-    }
-}
-
-/* Main */
-
-.container{
-    width:100%;
-    max-width:480px;
-    margin:auto;
-    padding:25px 15px 50px;
-    position:relative;
-    z-index:2;
-}
-
-.card{
-    background:rgba(255,255,255,0.88);
-    border-radius:35px;
-    padding:25px 18px;
-    text-align:center;
-    box-shadow:0 15px 50px rgba(80,40,100,.25);
-    backdrop-filter:blur(10px);
-}
-
-/* Heading */
-
-.cake{
-    font-size:55px;
-    animation:bounce 1.5s infinite;
-}
-
-@keyframes bounce{
-    50%{
-        transform:translateY(-8px);
-    }
-}
-
-.small{
-    color:#9c27b0;
-    font-size:18px;
-    font-weight:bold;
-    letter-spacing:2px;
-}
-
-h1{
-    font-size:35px;
-    margin:8px 0;
-    color:#e83e8c;
-}
-
-.name{
-    font-size:52px;
-    font-weight:900;
-    background:linear-gradient(90deg,#ff4081,#9c27b0,#ff4081);
-    -webkit-background-clip:text;
-    color:transparent;
-    margin-bottom:18px;
-}
-
-/* Photo Gallery */
-
-.gallery{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin:20px 0;
-}
-
-.gallery img{
-    width:100%;
-    height:210px;
-    object-fit:cover;
-    border-radius:22px;
-    border:5px solid white;
-    box-shadow:0 8px 20px rgba(0,0,0,.18);
-    transition:.4s;
-}
-
-.gallery img:hover{
-    transform:scale(1.04);
-}
-
-/* Message */
-
-.message{
-    padding:20px 10px;
-    line-height:1.8;
-    font-size:16px;
-    color:#4b4453;
-}
-
-.highlight{
-    color:#e91e63;
-    font-weight:bold;
-}
-
-.quote{
-    background:#fff0f7;
-    border-radius:20px;
-    padding:17px;
-    margin:15px 0;
-    color:#8e2460;
-    font-weight:bold;
-    line-height:1.7;
-}
-
-/* Button */
-
-button{
-    border:none;
-    outline:none;
-    padding:15px 28px;
-    border-radius:50px;
-    color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-    background:linear-gradient(90deg,#ff4081,#9c27b0);
-    box-shadow:0 8px 20px rgba(156,39,176,.3);
-}
-
-button:active{
-    transform:scale(.95);
-}
-
-/* Surprise */
-
-#surprise{
-    display:none;
-    margin-top:20px;
-    padding:20px;
-    border-radius:22px;
-    background:linear-gradient(135deg,#fff0f6,#f2e8ff);
-    color:#7b1fa2;
-    line-height:1.8;
-    font-weight:bold;
-}
-
-/* Footer */
-
-.footer{
-    margin-top:25px;
-    font-size:14px;
-    color:#777;
-}
-
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Floating decorations -->
+<!-- ================= HEADER ================= -->
 
-<div class="heart" style="left:5%;animation-delay:0s;">💖</div>
-<div class="heart" style="left:18%;animation-delay:2s;">💕</div>
-<div class="heart" style="left:35%;animation-delay:4s;">✨</div>
-<div class="heart" style="left:55%;animation-delay:1s;">💜</div>
-<div class="heart" style="left:75%;animation-delay:3s;">🎈</div>
-<div class="heart" style="left:90%;animation-delay:5s;">💖</div>
+<header class="header">
 
+    <div class="logo-area">
+        <div class="logo-icon">🌿</div>
 
-<div class="container">
-
-<div class="card">
-
-    <div class="cake">🎂</div>
-
-    <div class="small">
-        A SPECIAL DAY FOR A SPECIAL GIRL
+        <div>
+            <h1>Bharathi</h1>
+            <span>Sypireddy Sugarcane Shop</span>
+        </div>
     </div>
 
-    <h1>Happy Birthday</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-    <div class="name">
-        Deepu 👑
-    </div>
-
-
-    <!-- FOUR PHOTOS -->
-
-    <div class="gallery">
-
-        <img src="photo1.jpeg" alt="Deepu Photo 1">
-
-        <img src="photo2.jpeg" alt="Deepu Photo 2">
-
-        <img src="photo3.jpeg" alt="Deepu Photo 3">
-
-        <img src="photo4.jpeg" alt="Deepu Photo 4">
-
-    </div>
-
-
-    <!-- Birthday Message -->
-
-    <div class="message">
-
-        <p>
-        <span class="highlight">
-        Dear Deepu 💖
-        </span>
-        </p>
-
-        <br>
-
-        Life lo chala mandi friends
-        parichayam avutharu...
-
-        Kani kontha mandi matrame
-        mana heart lo special place
-        create cheskuntaru. 🫶
-
-        <br><br>
-
-        <span class="highlight">
-        Nuvvu alanti oka very special friend. ❤️
-        </span>
-
-        <br><br>
-
-        Mana friendship lo unna
-        small small jokes,
-        silly fights,
-        fun moments,
-        unforgettable memories...
-
-        ivanni life lo eppatiki
-        beautiful memories ga untayi. 🥰
-
-    </div>
-
-
-    <div class="quote">
-
-        “Good friends are not just people
-        we meet in life...
-
-        They are the beautiful memories
-        we carry forever.” 💕✨
-
-    </div>
-
-
-    <div class="message">
-
-        Nee life lo happiness
-        eppudu thakkuva kakudadhu. 🌸
-
-        <br><br>
-
-        Nee face lo smile eppudu
-        ilaane undali. 😊
-
-        <br><br>
-
-        Nee dreams anni nijam avvali,
-        nee life full of success,
-        happiness and beautiful moments
-        tho nindipovali. ✨
-
-        <br><br>
-
-        <span class="highlight">
-        Happy Birthday once again Deepu! 🎂🎉
-        </span>
-
-        <br><br>
-
-        Always stay happy,
-        always keep smiling,
-        and always be the wonderful person
-        you are. 💖
-
-        <br><br>
-
-        <b>
-        Our friendship forever! 🫂❤️
-        </b>
-
-    </div>
-
-
-    <!-- Surprise Button -->
-
-    <button onclick="showSurprise()">
-        🎁 Open Your Surprise
+    <button class="cart-button" onclick="openCart()">
+        🛒
+        <span id="cartCount">0</span>
     </button>
 
+</header>
 
-    <div id="surprise">
 
-        🎉 SURPRISE DEEPU! 🎉
+<!-- ================= HERO ================= -->
 
-        <br><br>
+<section class="hero" id="home">
 
-        You are not just a friend...
+    <div class="hero-content">
 
-        <br>
+        <span class="small-title">FRESH • NATURAL • REFRESHING</span>
 
-        You are one of the beautiful
-        memories of my life. 💖
+        <h2>
+            Fresh Sugarcane Juice
+            <br>
+            <span>Made Fresh For You</span>
+        </h2>
 
-        <br><br>
+        <p>
+            Enjoy freshly prepared sugarcane juice along with
+            your favourite chocolates, biscuits and refreshing drinks.
+        </p>
 
-        No matter where life takes us,
-        I hope our friendship always
-        stays this beautiful. 🫂✨
+        <div class="hero-buttons">
+            <a href="#products" class="primary-btn">
+                Shop Now →
+            </a>
 
-        <br><br>
+            <a href="#about" class="secondary-btn">
+                Learn More
+            </a>
+        </div>
 
-        <span style="font-size:25px;">
-        💕 Best Friends Forever 💕
-        </span>
+    </div>
+
+    <div class="hero-image">
+        <div class="juice-card">
+
+            <div class="juice-icon">🥤</div>
+
+            <h3>Fresh Sugarcane Juice</h3>
+
+            <p>100% Fresh • Served Chilled</p>
+
+            <strong>From ₹10</strong>
+
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="categories">
+
+    <div class="category active" onclick="filterProducts('all')">
+        <span>🛍️</span>
+        <p>All Products</p>
+    </div>
+
+    <div class="category" onclick="filterProducts('juice')">
+        <span>🥤</span>
+        <p>Sugarcane Juice</p>
+    </div>
+
+    <div class="category" onclick="filterProducts('chocolate')">
+        <span>🍫</span>
+        <p>Chocolates</p>
+    </div>
+
+    <div class="category" onclick="filterProducts('biscuit')">
+        <span>🍪</span>
+        <p>Biscuits</p>
+    </div>
+
+    <div class="category" onclick="filterProducts('drink')">
+        <span>🧃</span>
+        <p>Drinks</p>
+    </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="products-section" id="products">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-label">OUR PRODUCTS</span>
+
+            <h2>Shop Your Favourites</h2>
+
+            <p>
+                Fresh drinks and tasty snacks at affordable prices.
+            </p>
+        </div>
+
+        <div class="search-box">
+            🔍
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products..."
+                onkeyup="searchProducts()"
+            >
+        </div>
 
     </div>
 
 
-    <div class="footer">
+    <div class="product-grid" id="productGrid">
 
-        Made with ❤️ specially for Deepu
+        <!-- Products loaded by JavaScript -->
+
+    </div>
+
+</section>
+
+
+<!-- ================= SPECIAL OFFER ================= -->
+
+<section class="offer">
+
+    <div>
+
+        <span>SPECIAL OFFER</span>
+
+        <h2>
+            Refresh Yourself
+            <br>
+            With Fresh Sugarcane Juice
+        </h2>
+
+        <p>
+            Freshly prepared whenever you order.
+        </p>
+
+    </div>
+
+    <div class="offer-price">
+        <small>Starting at</small>
+        <strong>₹10</strong>
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about" id="about">
+
+    <div class="about-image">
+        🌱
+    </div>
+
+    <div class="about-content">
+
+        <span class="section-label">ABOUT OUR SHOP</span>
+
+        <h2>Freshness You Can Taste</h2>
+
+        <p>
+            Bharathi Sypireddy Sugarcane Shop brings you refreshing
+            sugarcane juice and a variety of chocolates, biscuits
+            and drinks.
+        </p>
+
+        <div class="features">
+
+            <div>
+                <span>✓</span>
+                <p>Freshly Prepared</p>
+            </div>
+
+            <div>
+                <span>✓</span>
+                <p>Affordable Prices</p>
+            </div>
+
+            <div>
+                <span>✓</span>
+                <p>Quality Products</p>
+            </div>
+
+            <div>
+                <span>✓</span>
+                <p>Quick Service</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer id="contact">
+
+    <div class="footer-main">
+
+        <div>
+
+            <div class="footer-logo">
+                🌿 Bharathi Sypireddy
+            </div>
+
+            <p>
+                Fresh sugarcane juice, drinks and snacks
+                for everyone.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Contact</h3>
+
+            <p>📞 +91 XXXXX XXXXX</p>
+            <p>📍 Your Shop Location</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Bharathi Sypireddy Sugarcane Shop.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<!-- ================= CART ================= -->
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<aside class="cart" id="cart">
+
+    <div class="cart-header">
+
+        <h2>Your Cart</h2>
+
+        <button onclick="closeCart()">✕</button>
+
+    </div>
+
+    <div id="cartItems" class="cart-items">
+
+        <div class="empty-cart">
+            🛒
+            <h3>Your cart is empty</h3>
+            <p>Add something delicious!</p>
+        </div>
+
+    </div>
+
+
+    <div class="cart-footer">
+
+        <div class="total-row">
+            <span>Total</span>
+            <strong id="cartTotal">₹0</strong>
+        </div>
+
+        <button class="checkout-btn" onclick="checkout()">
+            Proceed to Checkout →
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= CHECKOUT MODAL ================= -->
+
+<div class="modal-overlay" id="checkoutModal">
+
+    <div class="checkout-modal">
+
+        <button class="modal-close" onclick="closeCheckout()">✕</button>
+
+        <h2>Checkout</h2>
+
+        <p>Enter your details to place your order.</p>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Your Name"
+        >
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Mobile Number"
+        >
+
+        <textarea
+            id="customerAddress"
+            placeholder="Delivery Address"
+        ></textarea>
+
+        <select id="paymentMethod">
+
+            <option value="">Select Payment Method</option>
+            <option>Cash on Delivery</option>
+            <option>UPI</option>
+
+        </select>
+
+        <button class="place-order" onclick="placeOrder()">
+            Place Order
+        </button>
 
     </div>
 
 </div>
 
-</div>
 
-
-<script>
-
-function showSurprise(){
-
-    document.getElementById("surprise").style.display="block";
-
-    document.querySelector("button").innerHTML =
-        "💖 Best Friends Forever 💖";
-
-
-    /* Confetti */
-
-    for(let i=0;i<40;i++){
-
-        let confetti=document.createElement("div");
-
-        confetti.innerHTML=
-        ["🎉","💖","✨","💕","🎈"][Math.floor(Math.random()*5)];
-
-        confetti.style.position="fixed";
-        confetti.style.left=
-        Math.random()*100+"vw";
-
-        confetti.style.top="-30px";
-
-        confetti.style.fontSize=
-        (20+Math.random()*20)+"px";
-
-        confetti.style.zIndex="999";
-
-        document.body.appendChild(confetti);
-
-        let duration=
-        2000+Math.random()*2000;
-
-        confetti.animate(
-            [
-                {
-                    transform:"translateY(0) rotate(0deg)",
-                    opacity:1
-                },
-                {
-                    transform:
-                    "translateY(110vh) rotate(720deg)",
-                    opacity:0
-                }
-            ],
-            {
-                duration:duration,
-                easing:"linear"
-            }
-        );
-
-        setTimeout(()=>{
-            confetti.remove();
-        },duration);
-    }
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
