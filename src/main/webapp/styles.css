@@ -1,679 +1,1170 @@
-/* =========================================
-   BHARATHI SYPIREDDY SHOP
-   E-COMMERCE JAVASCRIPT
-========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+html {
+    scroll-behavior: smooth;
+}
 
-const products = [
-
-    /* ===== SUGARCANE JUICE ===== */
-
-    {
-        id: 1,
-        name: "Sugarcane Juice - 150ml",
-        category: "juice",
-        price: 10,
-        icon: "🥤",
-        description: "Freshly prepared sugarcane juice"
-    },
-
-    {
-        id: 2,
-        name: "Sugarcane Juice - 250ml",
-        category: "juice",
-        price: 20,
-        icon: "🥤",
-        description: "Refreshing 250ml sugarcane glass"
-    },
-
-    {
-        id: 3,
-        name: "Sugarcane Juice - 500ml",
-        category: "juice",
-        price: 40,
-        icon: "🍹",
-        description: "Large chilled sugarcane bottle"
-    },
-
-    {
-        id: 4,
-        name: "Sugarcane Juice - 1 Litre",
-        category: "juice",
-        price: 70,
-        icon: "🧃",
-        description: "1 litre fresh sugarcane bottle"
-    },
-
-
-    /* ===== CHOCOLATES ===== */
-
-    {
-        id: 5,
-        name: "Dairy Milk Chocolate",
-        category: "chocolate",
-        price: 40,
-        icon: "🍫",
-        description: "Smooth and delicious chocolate"
-    },
-
-    {
-        id: 6,
-        name: "KitKat",
-        category: "chocolate",
-        price: 30,
-        icon: "🍫",
-        description: "Crispy chocolate wafer"
-    },
-
-    {
-        id: 7,
-        name: "5 Star",
-        category: "chocolate",
-        price: 20,
-        icon: "🍫",
-        description: "Rich caramel chocolate"
-    },
-
-    {
-        id: 8,
-        name: "Perk",
-        category: "chocolate",
-        price: 10,
-        icon: "🍫",
-        description: "Crispy chocolate snack"
-    },
-
-
-    /* ===== BISCUITS ===== */
-
-    {
-        id: 9,
-        name: "Parle-G Biscuits",
-        category: "biscuit",
-        price: 10,
-        icon: "🍪",
-        description: "Classic tea-time biscuits"
-    },
-
-    {
-        id: 10,
-        name: "Good Day Biscuits",
-        category: "biscuit",
-        price: 20,
-        icon: "🍪",
-        description: "Crunchy and tasty biscuits"
-    },
-
-    {
-        id: 11,
-        name: "Hide & Seek",
-        category: "biscuit",
-        price: 30,
-        icon: "🍪",
-        description: "Chocolate chip biscuits"
-    },
-
-
-    /* ===== DRINKS ===== */
-
-    {
-        id: 12,
-        name: "Sprite",
-        category: "drink",
-        price: 40,
-        icon: "🧃",
-        description: "Refreshing soft drink"
-    },
-
-    {
-        id: 13,
-        name: "Coca-Cola",
-        category: "drink",
-        price: 40,
-        icon: "🥤",
-        description: "Classic refreshing drink"
-    },
-
-    {
-        id: 14,
-        name: "Frooti",
-        category: "drink",
-        price: 20,
-        icon: "🧃",
-        description: "Refreshing mango drink"
-    }
-
-];
-
-
-let cart = JSON.parse(localStorage.getItem("bharathiCart")) || [];
-
-
-/* =========================================
-   DISPLAY PRODUCTS
-========================================= */
-
-function displayProducts(list = products) {
-
-    const grid = document.getElementById("productGrid");
-
-    grid.innerHTML = "";
-
-
-    if (list.length === 0) {
-
-        grid.innerHTML = `
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                padding:50px;
-            ">
-                <h2>No products found 😕</h2>
-                <p>Try another search.</p>
-            </div>
-        `;
-
-        return;
-    }
-
-
-    list.forEach(product => {
-
-        grid.innerHTML += `
-
-            <div class="product-card">
-
-                <div class="product-image">
-                    ${product.icon}
-                </div>
-
-                <div class="product-info">
-
-                    <span class="product-category">
-                        ${product.category}
-                    </span>
-
-                    <h3>
-                        ${product.name}
-                    </h3>
-
-                    <p>
-                        ${product.description}
-                    </p>
-
-                    <div class="price-row">
-
-                        <span class="price">
-                            ₹${product.price}
-                        </span>
-
-                        <button
-                            class="add-btn"
-                            onclick="addToCart(${product.id})"
-                        >
-                            + Add
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7faf5;
+    color: #172219;
 }
 
 
-/* =========================================
-   ADD TO CART
-========================================= */
+/* ================= NAVBAR ================= */
 
-function addToCart(id) {
+.navbar {
+    height: 78px;
+    background: #ffffff;
 
-    const product = products.find(
-        item => item.id === id
-    );
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    const existing = cart.find(
-        item => item.id === id
-    );
+    padding: 0 7%;
 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-    if (existing) {
+    border-bottom: 1px solid #e5ebe3;
+}
 
-        existing.quantity++;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-    } else {
+.logo-symbol {
+    width: 46px;
+    height: 46px;
 
-        cart.push({
+    border-radius: 12px;
 
-            ...product,
+    background: #e2f1dd;
 
-            quantity: 1
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        });
+    font-size: 25px;
+}
 
-    }
+.logo h1 {
+    font-size: 19px;
+}
 
+.logo p {
+    color: #718072;
+    font-size: 10px;
+    margin-top: 3px;
+}
 
-    saveCart();
+.navbar nav {
+    display: flex;
+    gap: 32px;
+}
 
-    updateCart();
+.navbar nav a {
+    color: #354238;
+    text-decoration: none;
 
-    openCart();
+    font-size: 14px;
+    font-weight: bold;
 
+    transition: .2s;
+}
+
+.navbar nav a:hover {
+    color: #3c8a38;
+}
+
+.cart-btn {
+    border: none;
+
+    background: #214b27;
+    color: white;
+
+    padding: 12px 17px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    position: relative;
+}
+
+.cart-btn span {
+    position: absolute;
+
+    right: -8px;
+    top: -8px;
+
+    width: 21px;
+    height: 21px;
+
+    border-radius: 50%;
+
+    background: #e7a72c;
+
+    color: #172219;
+
+    font-size: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
-/* =========================================
-   SAVE CART
-========================================= */
+/* ================= HERO ================= */
 
-function saveCart() {
+.hero {
+    min-height: 590px;
 
-    localStorage.setItem(
-        "bharathiCart",
-        JSON.stringify(cart)
-    );
+    padding: 80px 9%;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            120deg,
+            #edf8e9,
+            #ffffff
+        );
+}
+
+.hero-text {
+    width: 55%;
+}
+
+.tag,
+.section-tag {
+    color: #4b913e;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.hero h2 {
+    font-size: 62px;
+
+    line-height: 1.04;
+
+    margin: 18px 0;
+}
+
+.hero h2 span {
+    display: block;
+    color: #4b913e;
+}
+
+.hero-text > p {
+    max-width: 540px;
+
+    color: #687469;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.shop-btn,
+.learn-btn {
+    text-decoration: none;
+
+    padding: 15px 25px;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+.shop-btn {
+    background: #214b27;
+    color: white;
+}
+
+.learn-btn {
+    background: white;
+
+    color: #214b27;
+
+    border: 1px solid #dbe4d8;
 }
 
 
-/* =========================================
-   UPDATE CART
-========================================= */
+/* ================= HERO VISUAL ================= */
 
-function updateCart() {
+.hero-visual {
+    width: 410px;
+    height: 410px;
 
-    const cartItems =
-        document.getElementById("cartItems");
+    border-radius: 50%;
 
-    const cartCount =
-        document.getElementById("cartCount");
-
-    const cartTotal =
-        document.getElementById("cartTotal");
-
-
-    let total = 0;
-
-    let count = 0;
-
-
-    if (cart.length === 0) {
-
-        cartItems.innerHTML = `
-
-            <div class="empty-cart">
-
-                🛒
-
-                <h3>Your cart is empty</h3>
-
-                <p>
-                    Add something delicious!
-                </p>
-
-            </div>
-
-        `;
-
-    } else {
-
-        cartItems.innerHTML = "";
-
-
-        cart.forEach(item => {
-
-            total += item.price * item.quantity;
-
-            count += item.quantity;
-
-
-            cartItems.innerHTML += `
-
-                <div class="cart-item">
-
-                    <div class="cart-item-icon">
-                        ${item.icon}
-                    </div>
-
-                    <div class="cart-item-info">
-
-                        <h4>
-                            ${item.name}
-                        </h4>
-
-                        <p>
-                            ₹${item.price * item.quantity}
-                        </p>
-
-                        <div class="quantity">
-
-                            <button
-                                onclick="changeQuantity(
-                                    ${item.id},
-                                    -1
-                                )"
-                            >
-                                −
-                            </button>
-
-                            <strong>
-                                ${item.quantity}
-                            </strong>
-
-                            <button
-                                onclick="changeQuantity(
-                                    ${item.id},
-                                    1
-                                )"
-                            >
-                                +
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="remove"
-                        onclick="removeFromCart(${item.id})"
-                    >
-                        ✕
-                    </button>
-
-                </div>
-
-            `;
-
-        });
-
-    }
-
-
-    cartCount.textContent = count;
-
-    cartTotal.textContent =
-        `₹${total}`;
-
-}
-
-
-/* =========================================
-   CHANGE QUANTITY
-========================================= */
-
-function changeQuantity(id, amount) {
-
-    const item = cart.find(
-        product => product.id === id
-    );
-
-
-    if (!item) return;
-
-
-    item.quantity += amount;
-
-
-    if (item.quantity <= 0) {
-
-        cart = cart.filter(
-            product => product.id !== id
+    background:
+        radial-gradient(
+            circle,
+            #c8e9bd,
+            #77b96b
         );
 
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    box-shadow:
+        0 25px 70px rgba(45,100,45,.20);
+}
 
-    saveCart();
+.circle {
+    width: 275px;
 
-    updateCart();
+    padding: 30px;
 
+    background: white;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.13);
+}
+
+.juice-glass {
+    font-size: 90px;
+}
+
+.circle h3 {
+    font-size: 17px;
+    margin: 8px 0;
+}
+
+.circle p {
+    font-size: 12px;
+    color: #778078;
+}
+
+.circle strong {
+    display: block;
+
+    color: #3e8a38;
+
+    font-size: 28px;
+
+    margin-top: 8px;
 }
 
 
-/* =========================================
-   REMOVE PRODUCT
-========================================= */
+/* ================= CATEGORIES ================= */
 
-function removeFromCart(id) {
+.categories {
+    padding: 30px 7%;
 
-    cart = cart.filter(
-        product => product.id !== id
-    );
+    background: white;
 
-    saveCart();
+    display: flex;
 
-    updateCart();
+    justify-content: center;
 
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.category {
+    min-width: 135px;
+
+    padding: 17px 25px;
+
+    border: 1px solid #e2e9df;
+
+    background: white;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    color: #354238;
+
+    transition: .2s;
+}
+
+.category span {
+    margin-right: 6px;
+}
+
+.category:hover,
+.category.active {
+    background: #eaf6e5;
+
+    border-color: #b8d8b0;
+
+    color: #32752f;
 }
 
 
-/* =========================================
-   OPEN CART
-========================================= */
+/* ================= PRODUCTS ================= */
 
-function openCart() {
+.products {
+    padding: 90px 8%;
+}
 
-    document
-        .getElementById("cart")
-        .classList.add("open");
+.section-top {
+    display: flex;
 
-    document
-        .getElementById("cartOverlay")
-        .classList.add("show");
+    align-items: end;
 
+    justify-content: space-between;
+
+    margin-bottom: 40px;
+}
+
+.section-top h2 {
+    font-size: 38px;
+
+    margin: 10px 0;
+}
+
+.section-top p {
+    color: #758078;
+}
+
+.search {
+    width: 290px;
+
+    height: 48px;
+
+    background: white;
+
+    border: 1px solid #dce4da;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 15px;
+}
+
+.search input {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    margin-left: 8px;
+
+    font-size: 14px;
 }
 
 
-/* =========================================
-   CLOSE CART
-========================================= */
+/* PRODUCT GRID */
 
-function closeCart() {
+.product-container {
+    display: grid;
 
-    document
-        .getElementById("cart")
-        .classList.remove("open");
+    grid-template-columns:
+        repeat(4, 1fr);
 
-    document
-        .getElementById("cartOverlay")
-        .classList.remove("show");
+    gap: 22px;
+}
 
+.product-card {
+    background: white;
+
+    border: 1px solid #e3eae1;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition: .25s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 40px rgba(45,80,40,.12);
+}
+
+.product-image {
+    height: 210px;
+
+    background: #f0f6ed;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 80px;
+}
+
+.product-details {
+    padding: 20px;
+}
+
+.product-type {
+    color: #729071;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.product-details h3 {
+    font-size: 17px;
+
+    margin: 8px 0;
+}
+
+.product-details p {
+    color: #788279;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    min-height: 35px;
+}
+
+.product-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 18px;
+}
+
+.product-price {
+    font-size: 20px;
+
+    color: #27622d;
+
+    font-weight: 800;
+}
+
+.add {
+    border: none;
+
+    background: #214b27;
+
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.add:hover {
+    background: #397a3d;
 }
 
 
-/* =========================================
-   SEARCH
-========================================= */
+/* ================= OFFER ================= */
 
-function searchProducts() {
+.offer {
+    margin: 0 8% 90px;
 
-    const search =
-        document
-            .getElementById("searchInput")
-            .value
-            .toLowerCase();
+    padding: 45px 55px;
 
+    border-radius: 22px;
 
-    const filtered = products.filter(product =>
-
-        product.name
-            .toLowerCase()
-            .includes(search)
-
-        ||
-
-        product.category
-            .toLowerCase()
-            .includes(search)
-
-    );
-
-
-    displayProducts(filtered);
-
-}
-
-
-/* =========================================
-   CATEGORY FILTER
-========================================= */
-
-function filterProducts(category) {
-
-    document
-        .querySelectorAll(".category")
-        .forEach(item => {
-
-            item.classList.remove("active");
-
-        });
-
-
-    event.currentTarget.classList.add("active");
-
-
-    if (category === "all") {
-
-        displayProducts(products);
-
-        return;
-
-    }
-
-
-    const filtered =
-        products.filter(
-            product =>
-                product.category === category
+    background:
+        linear-gradient(
+            120deg,
+            #214b27,
+            #43853d
         );
 
+    color: white;
 
-    displayProducts(filtered);
+    display: flex;
 
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.offer span {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+}
+
+.offer h2 {
+    max-width: 650px;
+
+    font-size: 31px;
+
+    margin: 10px 0;
+}
+
+.offer p {
+    opacity: .8;
+}
+
+.offer-price {
+    text-align: center;
+}
+
+.offer-price small {
+    display: block;
+}
+
+.offer-price strong {
+    font-size: 65px;
 }
 
 
-/* =========================================
-   CHECKOUT
-========================================= */
+/* ================= ABOUT ================= */
 
-function checkout() {
+.about {
+    background: white;
 
-    if (cart.length === 0) {
+    padding: 90px 8%;
 
-        alert(
-            "Your cart is empty. Please add a product first."
-        );
+    display: flex;
 
-        return;
+    align-items: center;
 
+    gap: 80px;
+}
+
+.about-picture {
+    width: 370px;
+    height: 330px;
+
+    flex-shrink: 0;
+
+    border-radius: 25px;
+
+    background: #e5f3df;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 120px;
+}
+
+.about-text {
+    max-width: 600px;
+}
+
+.about-text h2 {
+    font-size: 40px;
+
+    margin: 12px 0 18px;
+}
+
+.about-text > p {
+    color: #69746c;
+
+    line-height: 1.8;
+}
+
+.advantages {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.advantages div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.advantages b {
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: #dff0d9;
+
+    color: #3f8939;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ================= CONTACT ================= */
+
+.contact {
+    padding: 70px 8%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 50px;
+}
+
+.contact h2 {
+    font-size: 34px;
+
+    margin: 10px 0;
+}
+
+.contact p {
+    color: #68746b;
+
+    line-height: 1.7;
+}
+
+.contact-info {
+    background: white;
+
+    padding: 25px 35px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e2e9df;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #112116;
+
+    color: white;
+
+    padding: 55px 8% 20px;
+}
+
+.footer-content {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    gap: 50px;
+
+    padding-bottom: 40px;
+}
+
+.footer-content h2 {
+    margin-bottom: 12px;
+}
+
+.footer-content h3 {
+    margin-bottom: 15px;
+}
+
+.footer-content p,
+.footer-content a {
+    color: #aeb8b0;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+.footer-content a {
+    display: block;
+
+    text-decoration: none;
+
+    margin: 7px 0;
+}
+
+.footer-content a:hover {
+    color: white;
+}
+
+.copyright {
+    border-top: 1px solid #304137;
+
+    padding-top: 20px;
+
+    text-align: center;
+
+    color: #88958c;
+
+    font-size: 12px;
+}
+
+
+/* ================= CART ================= */
+
+.cart-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.5);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 1500;
+}
+
+.cart-overlay.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.cart-sidebar {
+    position: fixed;
+
+    right: -450px;
+
+    top: 0;
+
+    width: 430px;
+
+    max-width: 100%;
+
+    height: 100vh;
+
+    background: white;
+
+    z-index: 1600;
+
+    transition: .35s;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    padding: 22px;
+
+    border-bottom: 1px solid #e6ebe4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.cart-header button {
+    border: none;
+
+    background: #edf1ec;
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.cart-items {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 20px;
+}
+
+.empty {
+    text-align: center;
+
+    margin-top: 100px;
+
+    color: #78837b;
+}
+
+.empty h3 {
+    margin: 10px 0;
+}
+
+.cart-item {
+    display: flex;
+
+    gap: 12px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #edf0eb;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 10px;
+
+    background: #eff6ec;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-info h4 {
+    font-size: 14px;
+}
+
+.cart-item-info strong {
+    display: block;
+
+    color: #367738;
+
+    margin-top: 5px;
+}
+
+.quantity {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 8px;
+}
+
+.quantity button {
+    border: none;
+
+    width: 26px;
+    height: 26px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.delete {
+    border: none;
+
+    background: transparent;
+
+    color: #bb5050;
+
+    cursor: pointer;
+}
+
+.cart-bottom {
+    padding: 22px;
+
+    border-top: 1px solid #e6ebe4;
+}
+
+.total {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 21px;
+
+    margin-bottom: 18px;
+}
+
+.checkout {
+    width: 100%;
+
+    border: none;
+
+    background: #214b27;
+
+    color: white;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* ================= MODAL ================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.6);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2000;
+
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.checkout-box {
+    width: 450px;
+
+    max-width: 100%;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    position: relative;
+}
+
+.checkout-box h2 {
+    margin-bottom: 8px;
+}
+
+.checkout-box > p {
+    color: #768078;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.checkout-box input,
+.checkout-box textarea,
+.checkout-box select {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #dce4da;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-family: inherit;
+}
+
+.checkout-box textarea {
+    height: 90px;
+
+    resize: none;
+}
+
+.close-modal {
+    position: absolute;
+
+    right: 20px;
+    top: 20px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.place-order {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #214b27;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 1050px) {
+
+    .navbar {
+        padding: 0 4%;
     }
 
-
-    document
-        .getElementById("checkoutModal")
-        .classList.add("show");
-
-}
-
-
-/* =========================================
-   CLOSE CHECKOUT
-========================================= */
-
-function closeCheckout() {
-
-    document
-        .getElementById("checkoutModal")
-        .classList.remove("show");
-
-}
-
-
-/* =========================================
-   PLACE ORDER
-========================================= */
-
-function placeOrder() {
-
-    const name =
-        document.getElementById("customerName").value;
-
-    const phone =
-        document.getElementById("customerPhone").value;
-
-    const address =
-        document.getElementById("customerAddress").value;
-
-    const payment =
-        document.getElementById("paymentMethod").value;
-
-
-    if (!name || !phone || !address || !payment) {
-
-        alert(
-            "Please fill all the details."
-        );
-
-        return;
-
+    .navbar nav {
+        display: none;
     }
 
+    .hero {
+        padding: 70px 5%;
 
-    const orderNumber =
-        "BS" +
-        Math.floor(
-            100000 + Math.random() * 900000
-        );
+        gap: 50px;
+    }
 
+    .hero h2 {
+        font-size: 48px;
+    }
 
-    alert(
-
-        "🎉 Order Placed Successfully!\n\n" +
-
-        "Order ID: " +
-        orderNumber +
-        "\n\n" +
-
-        "Thank you, " +
-        name +
-        "!"
-
-    );
-
-
-    cart = [];
-
-    saveCart();
-
-    updateCart();
-
-    closeCheckout();
-
-    closeCart();
-
-
-    document.getElementById("customerName").value = "";
-
-    document.getElementById("customerPhone").value = "";
-
-    document.getElementById("customerAddress").value = "";
-
-    document.getElementById("paymentMethod").value = "";
+    .product-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 
 }
 
+@media(max-width: 700px) {
 
-/* =========================================
-   INITIAL LOAD
-========================================= */
+    .hero {
+        flex-direction: column;
 
-displayProducts();
+        text-align: center;
+    }
 
-updateCart();
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        width: 300px;
+        height: 300px;
+    }
+
+    .circle {
+        width: 210px;
+        padding: 20px;
+    }
+
+    .juice-glass {
+        font-size: 55px;
+    }
+
+    .section-top {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 20px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .product-container {
+        grid-template-columns: 1fr;
+    }
+
+    .offer {
+        margin: 0 5% 60px;
+
+        padding: 30px;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 25px;
+    }
+
+    .about {
+        flex-direction: column;
+
+        padding: 60px 5%;
+    }
+
+    .about-picture {
+        width: 100%;
+        height: 250px;
+    }
+
+    .advantages {
+        grid-template-columns: 1fr;
+    }
+
+    .contact {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 60px 5%;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+}
