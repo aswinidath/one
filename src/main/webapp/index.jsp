@@ -16,7 +16,7 @@
 
 <!-- TOP BAR -->
 <div class="top-bar">
-    <div>Fresh • Hygienic • Affordable</div>
+    <div>Fesh • Hygienic • Affordable</div>
 
     <div class="top-links">
         <span>Customer Service</span>
